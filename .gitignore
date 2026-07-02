@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Source/working photos — not part of the deploy
+RawPics/
+
+# Claude Code project notes — local only
+CLAUDE.md

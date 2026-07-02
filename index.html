@@ -281,8 +281,17 @@ header.scrolled{box-shadow:0 10px 30px -22px rgba(78,53,30,.5)}
   color:#fdf7ee;font-family:var(--font-label);text-transform:uppercase;
   letter-spacing:.13em;font-size:.72rem;font-weight:500;pointer-events:none;
 }
-.g-note{text-align:center;margin-top:30px;font-style:italic;color:var(--ink-soft);font-size:.9rem}
-.g-note a{color:var(--kraft-deep);border-bottom:1px solid var(--line-strong)}
+.g-follow{text-align:center;margin-top:36px}
+.g-follow-text{font-family:var(--font-body);font-style:italic;color:var(--ink-soft);font-size:1.05rem;margin-bottom:18px}
+.ig-btn{
+  display:inline-flex;align-items:center;gap:.6em;
+  background:var(--ink);color:var(--cream);
+  font-family:var(--font-label);font-size:1.05rem;font-weight:500;letter-spacing:.02em;
+  padding:.72em 1.5em;border-radius:999px;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.ig-btn svg{width:22px;height:22px;flex:none}
+.ig-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:120;background:rgba(30,24,18,.9);display:none;place-items:center;padding:24px}
@@ -411,7 +420,7 @@ footer{background:var(--ink);color:#e9e0d3;padding:0 0 40px}
   .mobile-menu .btn{margin-top:14px;justify-content:center}
   .hero-logo{height:clamp(132px,38vw,170px)}
   .about,.contact-grid{grid-template-columns:1fr}
-  .about-art{order:-1;max-width:340px;margin:0 auto;aspect-ratio:4/4}
+  .about-art{order:-1;width:100%;max-width:340px;margin:0 auto;aspect-ratio:4/4}
   .gallery{column-count:2}
   .menu-grid{grid-template-columns:1fr}
   .menu-grid::before,.menu-grid::after{display:none}
@@ -566,10 +575,14 @@ footer{background:var(--ink);color:#e9e0d3;padding:0 0 40px}
       <div class="g-tile"><img src="images/gallery/lemon-greenery-cake.jpg" alt="White buttercream cake finished with lemon slices and fresh greenery" loading="lazy"><span class="g-cap">Lemon &amp; Greenery Cake</span></div>
       <div class="g-tile"><img src="images/gallery/strawberry-cupcakes.jpg" alt="Pink-frosted cupcakes with strawberry and one toppers" loading="lazy"><span class="g-cap">Strawberry Cupcakes</span></div>
     </div>
-    <p class="g-note reveal">See more day-to-day on Instagram —
+    <div class="g-follow reveal">
+      <p class="g-follow-text">See more of my work on Instagram</p>
       <!-- TODO: confirm handle -->
-      <a href="https://instagram.com/arielleveebakery" target="_blank" rel="noopener">@arielleveebakery</a>
-    </p>
+      <a class="ig-btn" href="https://instagram.com/arielleveebakery" target="_blank" rel="noopener" aria-label="Arielle Vee Bakery on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        <span>@arielleveebakery</span>
+      </a>
+    </div>
   </div>
 </section>
 

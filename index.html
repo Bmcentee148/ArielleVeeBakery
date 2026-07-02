@@ -25,13 +25,13 @@
 
 <!-- ============================================================
      ARIELLE VEE BAKERY — one-page site
-     Built as a single self-contained file (logo embedded).
+     Deploy folder: index.html + og-image.png + images/gallery/*.jpg (all in this folder).
      TODO before launch — search for "TODO" to find these:
        1. EMAIL address -> replace arielleveebakery@gmail.com (contact line + mailto)
        2. CONTACT FORM  -> wired for Netlify; after 1st deploy add the email notification (see comment at <form>)
-       3. SHARE IMAGE   -> deploy og-image.png in the same folder as index.html (URLs already set to the netlify address)
-       3. GALLERY       -> drop real photos into the .g-tile slots
+       3. SHARE IMAGE   -> og-image.png ships in this folder; URLs already set to the netlify address
        4. ABOUT copy    -> confirm / tweak Arielle's bio
+     (Gallery photos are in place — logo & menu icons stay embedded in this file.)
 ============================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -261,30 +261,27 @@ header.scrolled{box-shadow:0 10px 30px -22px rgba(78,53,30,.5)}
 }
 .ticket .script{font-family:var(--font-script);font-size:1.9rem;color:var(--kraft-deep);line-height:1}
 
-/* ---------- gallery ---------- */
+/* ---------- gallery (masonry) ---------- */
 .gallery{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:14px;max-width:1040px;margin:0 auto;
+  column-count:3;column-gap:14px;
+  max-width:1080px;margin:0 auto;
 }
 .g-tile{
-  position:relative;aspect-ratio:1/1;border-radius:var(--radius);overflow:hidden;
-  background:linear-gradient(150deg,var(--cream-2),var(--blush));
-  border:1px solid var(--line);
-  cursor:pointer;
-  transition:transform .2s ease,box-shadow .2s ease;
+  position:relative;break-inside:avoid;margin:0 0 14px;
+  border-radius:6px;overflow:hidden;border:1px solid var(--line);
+  cursor:pointer;display:block;
+  box-shadow:0 12px 28px -22px rgba(78,53,30,.5);
 }
-.g-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.g-tile.wide{grid-column:span 2;aspect-ratio:2/1}
-.g-tile img{width:100%;height:100%;object-fit:cover}
-/* placeholder face */
-.g-ph{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:8px;padding:14px}
-.g-ph svg{width:30px;height:30px;color:var(--kraft);margin:0 auto;opacity:.85}
-.g-ph .lbl{
-  font-family:var(--font-label);text-transform:uppercase;letter-spacing:.14em;
-  font-size:.74rem;color:var(--kraft-deep);font-weight:500;
+.g-tile img{width:100%;height:auto;display:block;transition:transform .55s ease}
+.g-tile:hover img{transform:scale(1.045)}
+.g-cap{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:30px 15px 13px;
+  background:linear-gradient(transparent,rgba(35,28,22,.82));
+  color:#fdf7ee;font-family:var(--font-label);text-transform:uppercase;
+  letter-spacing:.13em;font-size:.72rem;font-weight:500;pointer-events:none;
 }
-.g-ph .soon{font-family:var(--font-body);font-style:italic;font-size:.72rem;color:var(--ink-soft);opacity:.75}
-.g-note{text-align:center;margin-top:26px;font-style:italic;color:var(--ink-soft);font-size:.9rem}
+.g-note{text-align:center;margin-top:30px;font-style:italic;color:var(--ink-soft);font-size:.9rem}
 .g-note a{color:var(--kraft-deep);border-bottom:1px solid var(--line-strong)}
 
 /* lightbox */
@@ -395,7 +392,6 @@ footer{background:var(--ink);color:#e9e0d3;padding:0 0 40px}
   .field input,.field select,.field textarea{background:#F8F3EA !important;color:#2B2926 !important;}
   .btn-solid{background:#2B2926 !important;color:#F8F3EA !important;}
   footer{background:#2B2926 !important;color:#e9e0d3 !important;}
-  .g-tile{background:linear-gradient(150deg,#F1E7D5,#F3E3DB) !important;}
 }
 
 /* ---------- responsive ---------- */
@@ -416,7 +412,7 @@ footer{background:var(--ink);color:#e9e0d3;padding:0 0 40px}
   .hero-logo{height:clamp(132px,38vw,170px)}
   .about,.contact-grid{grid-template-columns:1fr}
   .about-art{order:-1;max-width:340px;margin:0 auto;aspect-ratio:4/4}
-  .gallery{grid-template-columns:repeat(2,1fr)}
+  .gallery{column-count:2}
   .menu-grid{grid-template-columns:1fr}
   .menu-grid::before,.menu-grid::after{display:none}
   .m-item{border-bottom:1px dotted var(--line-strong);padding-bottom:24px}
@@ -424,7 +420,6 @@ footer{background:var(--ink);color:#e9e0d3;padding:0 0 40px}
 }
 @media(max-width:460px){
   .two{grid-template-columns:1fr}
-  .g-tile.wide{grid-column:span 2}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -556,19 +551,20 @@ footer{background:var(--ink);color:#e9e0d3;padding:0 0 40px}
       <p>From bridal showers to holidays, first communions to "just because" — here's a look at what a custom order can become.</p>
     </div>
 
-    <!-- GALLERY TILES
-         To add a real photo, replace the inner .g-ph block with:
-           <img src="images/your-photo.jpg" alt="describe the bake" data-full="images/your-photo.jpg">
-         The lightbox picks it up automatically (it opens any .g-tile that contains an <img>). -->
+    <!-- GALLERY TILES — real photos, masonry layout, click opens the lightbox.
+         Images live in images/gallery/. To add more, copy a tile and point src at the new file. -->
     <div class="gallery reveal">
-      <div class="g-tile wide" data-cat="Bridal Showers"><div class="g-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-8-4.6-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 11c0 5.4-8 10-8 10z"/></svg><span class="lbl">Bridal Showers</span><span class="soon">Photo coming soon</span></div></div>
-      <div class="g-tile" data-cat="Baby Showers"><div class="g-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span class="lbl">Baby Showers</span><span class="soon">Photo coming soon</span></div></div>
-      <div class="g-tile" data-cat="Weddings"><div class="g-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 20V9l6-4 6 4v11z"/><path d="M9 20v-6h6v6"/></svg><span class="lbl">Weddings</span><span class="soon">Photo coming soon</span></div></div>
-      <div class="g-tile" data-cat="Communion & Baptism"><div class="g-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M7 8h10"/></svg><span class="lbl">Communion</span><span class="soon">Photo coming soon</span></div></div>
-      <div class="g-tile" data-cat="Holidays"><div class="g-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><span class="lbl">Holidays</span><span class="soon">Photo coming soon</span></div></div>
-      <div class="g-tile wide" data-cat="Custom Cakes"><div class="g-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 20h14V12H5z"/><path d="M7 12V9h10v3"/><path d="M12 4v3"/></svg><span class="lbl">Custom Cakes</span><span class="soon">Photo coming soon</span></div></div>
-      <div class="g-tile" data-cat="Birthdays"><div class="g-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21h16v-8H4z"/><path d="M6 13v-3h12v3"/><path d="M12 4v4"/></svg><span class="lbl">Birthdays</span><span class="soon">Photo coming soon</span></div></div>
-      <div class="g-tile" data-cat="Teacher Appreciation"><div class="g-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4z"/><path d="M7 9v5c0 1.5 2.2 3 5 3s5-1.5 5-3V9"/></svg><span class="lbl">Teacher Gifts</span><span class="soon">Photo coming soon</span></div></div>
+      <div class="g-tile"><img src="images/gallery/valentina-heart-cookies.jpg" alt="Red heart cookies hand-lettered with the name Valentina" loading="lazy"><span class="g-cap">Custom Design Cookies</span></div>
+      <div class="g-tile"><img src="images/gallery/baby-shower-cookies.jpg" alt="Pale pink and white baby shower cookies — onesies, rattles and decorated ovals" loading="lazy"><span class="g-cap">Baby Shower Cookies</span></div>
+      <div class="g-tile"><img src="images/gallery/cake-pops.jpg" alt="Bright pink cake pops with white nonpareil sprinkles" loading="lazy"><span class="g-cap">Cake Pops</span></div>
+      <div class="g-tile"><img src="images/gallery/graduation-cookies.jpg" alt="Navy and gold graduation cookies with 2024 caps, diplomas and tassels" loading="lazy"><span class="g-cap">Graduation Cookies</span></div>
+      <div class="g-tile"><img src="images/gallery/wedding-cake.jpg" alt="Two-tier white wedding cake with baby's breath and greenery" loading="lazy"><span class="g-cap">Custom Cakes</span></div>
+      <div class="g-tile"><img src="images/gallery/strawberry-first-birthday.jpg" alt="Strawberry and pink number-one cookies for a first birthday" loading="lazy"><span class="g-cap">Strawberry First Birthday</span></div>
+      <div class="g-tile"><img src="images/gallery/cloud-cookies.jpg" alt="White cloud cookies with sleepy faces, pink cheeks and gold stars" loading="lazy"><span class="g-cap">Cloud Cookies</span></div>
+      <div class="g-tile"><img src="images/gallery/ombre-smash-cake.jpg" alt="Pink ombré rosette smash cake with a strawberry one topper" loading="lazy"><span class="g-cap">Birthday Cake</span></div>
+      <div class="g-tile"><img src="images/gallery/shamrock-cupcakes.jpg" alt="Vanilla cupcakes with white frosting and green shamrock sprinkles" loading="lazy"><span class="g-cap">Shamrock Cupcakes</span></div>
+      <div class="g-tile"><img src="images/gallery/lemon-greenery-cake.jpg" alt="White buttercream cake finished with lemon slices and fresh greenery" loading="lazy"><span class="g-cap">Lemon &amp; Greenery Cake</span></div>
+      <div class="g-tile"><img src="images/gallery/strawberry-cupcakes.jpg" alt="Pink-frosted cupcakes with strawberry and one toppers" loading="lazy"><span class="g-cap">Strawberry Cupcakes</span></div>
     </div>
     <p class="g-note reveal">See more day-to-day on Instagram —
       <!-- TODO: confirm handle -->

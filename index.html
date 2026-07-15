@@ -6,9 +6,10 @@
 <meta name="color-scheme" content="light">
 <title>Arielle Vee Bakery — Custom Cookies & Sweets | Long Island, NY</title>
 <meta name="description" content="Arielle Vee Bakery — hand-decorated custom cookies, cake pops, cupcakes and cakes, made to order on Long Island, NY. Order for showers, weddings, holidays and every sweet occasion.">
+<link rel="canonical" href="https://arielleveebakery.com/">
 
-<!-- Social share preview (Open Graph + Twitter). URLs point at the live site.
-     If a custom domain is added later, update the og:/twitter: URLs below to match. -->
+<!-- Social share preview (Open Graph + Twitter). URLs use the custom domain (arielleveebakery.com).
+     If the domain ever changes, update these, the canonical link above, and sitemap.xml + robots.txt. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Arielle Vee Bakery">
 <meta property="og:title" content="Arielle Vee Bakery — Custom Cookies & Sweets">
@@ -22,6 +23,33 @@
 <meta name="twitter:title" content="Arielle Vee Bakery — Custom Cookies & Sweets">
 <meta name="twitter:description" content="Hand-decorated cookies, cake pops, cupcakes and cakes, baked to order on Long Island, NY.">
 <meta name="twitter:image" content="https://arielleveebakery.com/og-image.png">
+
+<!-- Local business structured data for Google. By choice: no public phone (email-only contact)
+     and region-only location (no specific town). Add "telephone"/"addressLocality" here if that changes. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Arielle Vee Bakery",
+  "description": "Small custom bakery on Long Island, NY — hand-decorated cookies, cake pops, cupcakes and cakes, baked to order for showers, weddings, holidays and every sweet occasion.",
+  "url": "https://arielleveebakery.com/",
+  "image": "https://arielleveebakery.com/og-image.png",
+  "email": "arielleveebakery@gmail.com",
+  "servesCuisine": "Desserts",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "NY",
+    "addressCountry": "US"
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Long Island, NY"
+  },
+  "sameAs": [
+    "https://instagram.com/arielleveebakery"
+  ]
+}
+</script>
 
 <!-- ============================================================
      ARIELLE VEE BAKERY — one-page site
